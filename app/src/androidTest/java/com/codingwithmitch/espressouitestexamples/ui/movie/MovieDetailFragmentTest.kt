@@ -9,41 +9,34 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.codingwithmitch.espressouitestexamples.R
 import com.codingwithmitch.espressouitestexamples.data.DummyMovies.THE_RUNDOWN
-import com.codingwithmitch.espressouitestexamples.data.Movie
 import com.codingwithmitch.espressouitestexamples.factory.MovieFragmentFactory
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_movie_detail.view.*
+import org.junit.Assert.*
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MovieDetailFragmentTest{
-
+class MovieDetailFragmentTest {
 
     @Test
-    fun test_isMovieDataVisible() {
+    fun isMovieDataVisible(){
 
-        // SETUP
+        //setup
         val movie = THE_RUNDOWN
         val fragmentFactory = MovieFragmentFactory()
         val bundle = Bundle()
         bundle.putInt("movie_id", movie.id)
+
         val scenario = launchFragmentInContainer<MovieDetailFragment>(
             fragmentArgs = bundle,
             factory = fragmentFactory
         )
 
-        // VERIFY
         onView(withId(R.id.movie_title)).check(matches(withText(movie.title)))
 
         onView(withId(R.id.movie_description)).check(matches(withText(movie.description)))
+
+
     }
 }
-
-
-
-
-
-
-
-
-
