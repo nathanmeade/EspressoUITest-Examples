@@ -9,18 +9,18 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.codingwithmitch.espressouitestexamples.R
 import com.codingwithmitch.espressouitestexamples.factory.MovieFragmentFactory
+import kotlinx.android.synthetic.main.fragment_movie_detail.view.*
+import org.junit.Assert.*
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class DirectorsFragmentTest{
-
+class DirectorsFragmentTest {
 
     @Test
     fun test_isDirectorsListVisible() {
 
-        // GIVEN
+        // given
         val directors = arrayListOf("R.J. Stewart", "James Vanderbilt")
         val fragmentFactory = MovieFragmentFactory(null, null)
         val bundle = Bundle()
@@ -30,31 +30,7 @@ class DirectorsFragmentTest{
             factory = fragmentFactory
         )
 
-        // VERIFY
-        onView(withId(R.id.directors_text))
-            .check(matches(withText(
-                DirectorsFragment.stringBuilderForDirectors(directors)
-            )))
+        // verify
+        onView(withId(R.id.directors_text)).check(matches(withText(DirectorsFragment.stringBuilderForDirectors(directors))))
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
