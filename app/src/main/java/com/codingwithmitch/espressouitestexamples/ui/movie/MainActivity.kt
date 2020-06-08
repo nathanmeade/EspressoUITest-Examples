@@ -1,14 +1,16 @@
 package com.codingwithmitch.espressouitestexamples.ui.movie
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.request.RequestOptions
 import com.codingwithmitch.espressouitestexamples.R
 import com.codingwithmitch.espressouitestexamples.data.source.MoviesDataSource
 import com.codingwithmitch.espressouitestexamples.data.source.MoviesRemoteDataSource
 import com.codingwithmitch.espressouitestexamples.factory.MovieFragmentFactory
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UICommunicationListener {
 
     // dependencies (typically would be injected with dagger)
     lateinit var requestOptions: RequestOptions
@@ -45,6 +47,13 @@ class MainActivity : AppCompatActivity() {
             // Data Source
             moviesDataSource = MoviesRemoteDataSource()
         }
+    }
+
+    override fun loading(isLoading: Boolean) {
+        if (isLoading)
+            progress_bar.visibility = View.VISIBLE
+        else
+            progress_bar.visibility = View.INVISIBLE
     }
 
 }
