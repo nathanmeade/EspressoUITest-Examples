@@ -12,6 +12,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.codingwithmitch.espressouitestexamples.R
 import com.codingwithmitch.espressouitestexamples.data.FakeMovieData
 import com.codingwithmitch.espressouitestexamples.util.EspressoIdlingResource
+import com.codingwithmitch.espressouitestexamples.util.EspressoIdlingResourceRule
 import kotlinx.android.synthetic.main.fragment_movie_list.view.*
 import org.junit.After
 import org.junit.Assert.*
@@ -26,10 +27,13 @@ class MovieListFragmentTest {
     @get: Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
+    @get: Rule
+    val espressoIdlingResourceRule = EspressoIdlingResourceRule()
+
     val LIST_ITEM_IN_TEST = 4
     val MOVIE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
 
-    @Before
+/*    @Before
     fun registerIdlingResource(){
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
     }
@@ -37,7 +41,7 @@ class MovieListFragmentTest {
     @After
     fun unregisterIdlingResource(){
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
-    }
+    }*/
 
     /**
      * recyclerview comes into view
